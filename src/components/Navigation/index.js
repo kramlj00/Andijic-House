@@ -6,7 +6,7 @@ import styles from './style.module.css'
 
 const Navigation = () => (
   <section>
-    <NavigationBar />
+    <NavigationBar/>
     <Combobox />
   </section>
 )
