@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap);
+
+.locationTitle {
+    font-family: "Great Vibes";
+    font-size: 55px;
+    font-weight: normal;
+    position: relative;
+    text-align: center;
+    margin-bottom: 0px;
+    color: black;
+}
+
+.location{
+    text-align: center
+}
+
+.getDirectionsBtn{
+    /*margin:0 auto;
+    display: block;*/
+    position: relative;
+    
+    background-color: cornflowerblue;
+    text-decoration: none; 
+    width: 185px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    height: 50px;
+    line-height: 0%;
+}
+
+.getDirectionsBtn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.map{
+    height: 550px;
+    width: 1200px;
+    align-content: center;
+    margin:0 auto;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}

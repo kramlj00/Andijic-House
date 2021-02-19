@@ -10,7 +10,7 @@ const AboutUs = () => (
         <Bounce  triggerOnce={true}>
             <h2 className={styles.aboutUsTitle}>About us</h2>
         </Bounce> 
-        <Slide  triggerOnce={true} delay={700}>
+        <Slide  triggerOnce={true} delay={500}>
             <p className={styles.aboutUsText}>
                 Vacation House  for 4 persons in place Zaglav/Karbuni Blato
                 House has fully equipped kitchen, living room, bathroom, two bedrooms and big covered terrace.
