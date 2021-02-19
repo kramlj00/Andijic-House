@@ -24,6 +24,25 @@
   .navigationBar .active, .navigationBar .active:hover{
     border-bottom: 2px solid black;
   }
+
+  .footer {
+    margin: 30px;
+    list-style: none;
+    display: flex;
+    text-transform: uppercase;
+}
+ 
+.footer li {
+    margin: 0 25px;
+    font-size: 17px;
+    height: fit-content;
+    padding-top: 18px;
+}
+ 
+.footer li:hover {
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}
   
   @media screen and (min-width:800px) and (max-width:1200px){
     .navigationBar {

@@ -1,7 +1,7 @@
 import React from 'react'
   import styles from './style.module.css'
  
-  const navTabs = ['Home', 'Rooms', 'Exterior', 'Contact']
+  import NavigationBar from '../NavigationBar'
  
   const Footer = () => (
     <footer className={styles.footer}>
@@ -9,18 +9,14 @@ import React from 'react'
             <li className={styles.title}>
                 Andrijić House
             </li>
-            <li>Zaglav 27</li>
-            <li>20271 Blato </li>
-            <li>Croatia</li>
+                <li className={styles.houseAddress}>Zaglav 27</li>
+                <li className={styles.houseAddress}>20271 Blato </li>
+                <li className={styles.houseAddress}>Croatia</li>
             <li className={styles.phone}>
                 +385 098 181 6135
             </li>
         </ul>
-        <ul className={styles.navigation}>
-            {navTabs.map(tab =>
-              <li>{tab}</li>)
-            }
-        </ul>
+        <NavigationBar useThisStyle = "footer"/>
     </footer>
   )
  
