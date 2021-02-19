@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Quicksand&display=swap);
+
+.aboutUsTitle {
+    font-family: "Great Vibes";
+    font-size: 55px;
+    font-weight: normal;
+    position: relative;
+    text-align: center;
+    margin-bottom: 0px;
+    color: black;
+}
+
+.aboutUsText {
+    margin-top: 0px;
+    font-size: 23px;
+    font-weight: normal;
+    position: relative;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: left;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 2.5rem;
+    text-indent: 50px;
+    color: black;
+}
+
+@media screen and (min-width:750px) and (max-width:1025px)
+{
+    .aboutUsText {
+        font-size: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-indent: 50px;
+    }
+}
+
+@media screen and  (min-width:600px) and (max-width:750px)
+{
+    .aboutUsText {
+        font-size: 20px;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-indent: 50px;
+    }
+}
+
+@media screen and  (min-width:464px) and  (max-width:600px)
+{
+    .aboutUsText {
+        font-size: 18px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-indent: 30px;
+        line-height: 2rem;
+    }
+}
+
+@media screen and  (max-width:464px)
+{
+    .aboutUsText {
+        font-size: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-indent: 20px;
+        line-height: 1.8rem;
+    }
+}
+
+@media screen and (min-width: 620px) and (max-width:980px){
+    
+    .aboutUsTitle{
+        font-size:40px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 620px) {
+    .aboutUsTitle{   
+    font-size:40px;
+    }
+}
+
+
+@media screen and (max-width: 480px){
+    .aboutUsTitle{   
+        font-size:38px; 
+        margin-top: 16px;     
+    }
+}
