@@ -5,10 +5,11 @@ import Navigation from '../Navigation'
 
 import styles from './style.module.css'
 
-const NavigationHeader = () => (
-  <section className={styles.navigationHeader}>
-      <Logo />
-      <Navigation />
-  </section>
+const NavigationHeader = ({ activeTab }) => (
+    <section className={styles.navigationHeader}>
+        <Logo />
+        <Navigation activeTab={activeTab} />
+    </section>
 )
+
 export default NavigationHeader
