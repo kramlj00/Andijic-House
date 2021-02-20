@@ -1,0 +1,50 @@
+.socialNetw {
+    align-content: left;
+}
+
+.emailLogo {
+    margin-left: 5px;
+    height: 50px;
+    height: 50px;
+}
+
+.faceLogo {
+    height: 50px;
+    height: 50px;
+}
+
+.socialNetw .emailLogo:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.socialNetw .faceLogo:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media screen and (min-width:600px) and (max-width:1024px)
+{
+    .emailLogo {
+        height: 40px;
+        height: 40px;
+    }
+    
+    .faceLogo {
+        height: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width:600px)
+{
+    .emailLogo {
+        height: 30px;
+        height: 30px;
+    }
+    
+    .faceLogo {
+        height: 30px;
+        height: 30px;
+    }
+}
