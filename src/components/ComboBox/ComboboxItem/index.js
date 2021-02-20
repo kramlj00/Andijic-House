@@ -2,6 +2,8 @@ import React from 'react'
  
 import styles from './style.module.css'
  
+import AboutUs from '../../AboutUs'
+
 const ComboboxItem = ({language, name, flag, setSelected, selected}) => (
     <li key={name}
     onClick={() => setSelected({name, language})}

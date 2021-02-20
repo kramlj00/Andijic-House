@@ -1,8 +1,7 @@
 .comboboxItem {
     display: flex;
-    text-align: center;
     font-size: 12px;
-    width: 107px;
+    width: 112px;
     height: 36px;
     padding: 0;
     align-items: center;

@@ -3,6 +3,9 @@ import React, {useState} from 'react'
 import { languages } from '../../constants/const'
 import ComboboxItem from './ComboboxItem'
 import styles from './style.module.css' 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
  
 const Combobox = () => {
     const [selectedItem, setSelectedItem] = useState(
@@ -17,6 +20,7 @@ const Combobox = () => {
                 selected={el.name === selectedItem.name}
             />)}
             </ul>}
+            <FontAwesomeIcon icon={faChevronDown} size="0.2x" style={  {paddingRight: "12px"}} />
             {selectedItem.language}
         </div>
     )
