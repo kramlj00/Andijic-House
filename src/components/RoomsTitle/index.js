@@ -3,7 +3,6 @@ import React from 'react'
 import styles from './style.module.css'
 
 import { Bounce } from "react-awesome-reveal";
-import { Fade } from "react-awesome-reveal";
 
 
 const RoomsTitle = () => (
