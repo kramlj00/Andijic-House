@@ -1,0 +1,21 @@
+.galerija {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+ 
+.galerijaGrid {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+ 
+.galerijaGrid img {
+    flex: 0 0 32%;
+    width: 285px;
+    margin: 5px;
+    min-height: 70px;
+    cursor: pointer;
+}
