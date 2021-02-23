@@ -1,9 +1,9 @@
 import React from 'react'
   import styles from './style.module.css'
+  import {Link} from "gatsby";
+  import { navs as navTabs } from '../../constants/const'
  
-  import NavigationBar from '../NavigationBar'
- 
-  const Footer = () => (
+  const Footer = ({activeTab}) => (
     <footer className={styles.footer}>
         <ul className={styles.address}>
             <li className={styles.title}>
@@ -16,7 +16,13 @@ import React from 'react'
                 +385 098 181 6135
             </li>
         </ul>
-        <NavigationBar useThisStyle = "footer"/>
+        <ul className={styles.navigation}>
+      {navTabs.map(({tab, to}) => (
+          <Link to={to} >
+              <li className={tab === activeTab ? styles.active : ''}>{tab}</li>
+          </Link>)
+        )}
+      </ul>
     </footer>
   )
  

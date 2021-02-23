@@ -5,7 +5,9 @@
     background-color: #B5D1E5;
   }
 
-  @media screen and (max-width:920px){
+
+
+  @media screen and (max-width:800px){
 
     .navigationHeader{
       height: 80px;

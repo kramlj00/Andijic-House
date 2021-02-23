@@ -27,22 +27,34 @@
 
   .logoText {
     font-size: 35px;
-    padding-top:10px;
+    padding-top:5px;
   }
   
    .sub {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
-@media screen and (max-width:920px){
-
+@media screen and (min-width:800px) and (max-width:1050px)
+{
   .logoText {
-    font-size: 30px;
-    padding-top:10px;
+    font-size: 45px;
+    padding-top:7px;
   }
   
    .sub {
     font-size: 16px;
+  }
+}
+
+@media screen and (min-width:400px) and (max-width:800px)
+{
+  .logoText {
+    font-size: 40px;
+    padding-top:5px;
+  }
+  
+   .sub {
+    font-size: 15px;
   }
 }

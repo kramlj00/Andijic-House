@@ -37,7 +37,7 @@ html, body {width: auto!important; overflow-x: hidden!important}
 }
 
 .navigation {
-    padding-top: 35px;
+    padding-top: 30px;
     list-style: none;
     display: flex;
     text-transform: uppercase;
@@ -47,6 +47,7 @@ html, body {width: auto!important; overflow-x: hidden!important}
     margin: 0 22px;
     font-size: 17px;
     height: fit-content;
+    color: white;
 }
 
 .navigation li:hover {
@@ -55,7 +56,7 @@ html, body {width: auto!important; overflow-x: hidden!important}
 }
 
 
-@media screen and (min-width:450px) and (max-width:826px)
+@media screen and (min-width:450px) and (max-width:700px)
 {
     .footer{
         padding: 15px;
@@ -102,7 +103,7 @@ html, body {width: auto!important; overflow-x: hidden!important}
 
 
 
-@media screen and (min-width:826px) and (max-width:900px)
+@media screen and (min-width:700px) and (max-width:900px)
 {
     .footer {
         padding: 15px;
@@ -119,16 +120,16 @@ html, body {width: auto!important; overflow-x: hidden!important}
         margin-bottom:10px;    
     }
 
-    .phone, .email{
+    .houseAddress, .phone{
         font-size:12px;
     }
     
     .navigation {
-        padding-top: 25px;
+        padding-top: 21px;
     }
     
     .navigation li {
-        font-size: 12px;
+        font-size: 14px;
     }
     
     .navigation li:hover {
@@ -151,15 +152,15 @@ html, body {width: auto!important; overflow-x: hidden!important}
     }
 
     .navigation {
-        padding-top: 30px;
+        padding-top: 25px;
     }
 
-    .phone, .email{
+    .houseAddress, .phone{
         font-size:13px;
     }
     
     .navigation li {
-        font-size: 13px;
+        font-size: 15px;
     }
     
 }
@@ -174,15 +175,15 @@ html, body {width: auto!important; overflow-x: hidden!important}
         margin-bottom:10px;
     }
 
-    .phone, .email{
+    .houseAddress, .phone{
         font-size:15px;
     }
     .navigation {
-        padding-top: 35px;
+        padding-top: 25px;
     }
     
     .navigation li {
-        font-size: 14px;
+        font-size: 15px;
     }
     
 }

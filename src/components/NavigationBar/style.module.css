@@ -44,19 +44,34 @@
     border-bottom: 1px solid white;
     cursor: pointer;
 }
+
+@media screen and (min-width:800px) and (max-width:950px){
+  .navigationBar {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row;
+    width: 500px;
+    padding-top: 27px;
+    height: 50px;
+  }
   
-  @media screen and (min-width:800px) and (max-width:1200px){
+  .navigationBar li {
+
+    font-size: 16px;
+  }
+}
+  @media screen and (min-width:900px) and (max-width:1050px){
     .navigationBar {
       display: flex;
       justify-content: space-evenly;
       flex-flow: row;
-      width: 570px;
-      padding-top: 15px;
+      width: 520px;
+      padding-top: 27px;
       height: 50px;
     }
     
     .navigationBar li {
   
-      font-size: 14px;
+      font-size: 18px;
     }
   }
