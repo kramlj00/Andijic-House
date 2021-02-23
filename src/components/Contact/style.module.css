@@ -33,7 +33,7 @@
     padding-bottom: 20px;
     margin-left: 400px;
     margin-right: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     text-align: center;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .socialNetw{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .emailLogo {
@@ -84,6 +84,8 @@
     .contactInfo{
         margin-left: 100px;
         margin-right: 100px;
+        margin-top: 15px;
+        margin-bottom: 20px;
     }
 }
 
@@ -92,7 +94,23 @@
     .contactInfo{
         margin-left: 50px;
         margin-right: 50px;
+        margin-top: 15px;
+        margin-bottom: 10px;
     }
+
+    .socialNetw{
+        margin-bottom: 15px;
+    }
+    
+    .emailLogo {
+        height: 48px;
+        padding-left: 8px;
+    }
+    
+    .faceLogo {
+        height: 45px;
+        margin-left: 15px;
+    }   
 }
 
 @media screen and (max-width:600px)

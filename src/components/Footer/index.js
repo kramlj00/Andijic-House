@@ -11,7 +11,6 @@ import React from 'react'
             </li>
                 <li className={styles.houseAddress}>Zaglav 27</li>
                 <li className={styles.houseAddress}>20271 Blato </li>
-                <li className={styles.houseAddress}>Croatia</li>
             <li className={styles.phone}>
                 +385 098 181 6135
             </li>
