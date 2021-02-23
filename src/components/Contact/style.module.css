@@ -71,6 +71,60 @@
     transform: scale(1.1);
 }
 
+@media screen and (min-width:950px) and (max-width:1300px)
+{
+    .contactInfo{
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+
+@media screen and (min-width:700px) and (max-width:950px)
+{
+    .contactInfo{
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:700px)
+{
+    .contactInfo{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width:600px)
+{
+    .contactInfo{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-bottom: 10px;
+        padding-top: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .contactInfo p, address {
+        font-size: 18px;
+    }
+    
+    .socialNetw{
+        margin-bottom: 10px;
+    }
+    
+    .emailLogo {
+        height: 43px;
+        padding-left: 5px;
+    }
+    
+    .faceLogo {
+        height: 40px;
+        margin-left: 10px;
+    }
+}
+
 @media screen and (min-width:715px) and (max-width:980px)
 {
     .contactImg {
