@@ -1,74 +1,39 @@
-import React, {Component} from 'react'
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+import React, { useEffect, useState } from "react";
+
+import { db } from "../Firebase/firebase";
+
 import styles from './style.module.css'
 
-import { Fade } from "react-awesome-reveal";
- 
-const images=[
-'https://lh3.googleusercontent.com/Yyq8E4heuJNqK3zeKmYlW-IO5RrIJI3xjU763ZjNgEEqiIK30wZoMkJ_aZH6St2QZxT5_1Utu4A_Eb4QNCoR_UP_rSJlsKsuXZnNMkmK8FilhYb_mttpv_Y7Ev4Rl7WKB6kKDEQsm4hoF8WfjrOyTK7c0BPLikRZPSQCLCn4ueY0bbjtVXDofZJUBvEaHRPCl7sQP18zFZM15Qi8IRVe_pjTfStbL_Y1FwoVnaYthh8hgvlkmwSkRxnLYm3oi5nGWlG2YtWVqz2AlC7bx0Ov5Vrx3dlY8stMxu_ma3TnHur64PGvlS0nKPI06VzoCORhRb8VsMSLiiXYulHxrfK8hRN_T5Yte6DjXe0c97TaANq2GBu8jBZKJ3i-Kr6Y6LIUrXtpxj4ZJ0taDDR7O52aCRWLHEGMG3JTaSRuezuvKOiDgcIC8dzBGUcuPx2uwLvMY0KrIHpnZ2pGUIRg9wXir1Qrjx0xB7zU_pczziBOicvjGFEWbXHURJizLIkU9-0FQcdpmdrJjP9LlITpY10TwhHbK8AMXG0wN7mbqrZrY45zvIroGUb3R0DB1-MAn2zK9xbBXW34yADUo4_55_LQyJ_LBJE-EUsIym7_5lXZHIdZybM_rWcS8znmBhLrLTcs5w_Tha-_PBr_wZmnM1mFCvon6AujWfJd4Ocq3RU886RlsGSTw7LQ0WOKpZcoq4mD3I4-o6dXZIubjrn9IzgL3g=w1541-h925-no?authuser=0',
-'https://lh3.googleusercontent.com/D6BWmypYz9P9Zw2ej2EGryb5BYue4xSoAlLS4mh_z6nOmnA29y15tib1nzvV0N2XtWpjrsDKlZ9HFDpivN-EykIWEbF8lowcZLfE4OBSXM1--R-bbSy2vGGH9dxMB6KMxpTIHDnG2o3b-3IsaJTD6AlyAsZHu3zjznWKsA-7oqkr26B4JJBdhiK-sQi8Xo7bAV9NrW8sKvMG6Od0seNSaDpOOGiY6YXEzfJ8qPUFs600lIKxnpq45JDKyPiD5xDEicn6ZNayOKYxHa2amSbo8fBLe5TkIOkFeDuYAa9Ybt2zLLsn-hlKJrW08qqEwCSmAQcyJSTuwSyyfRHOoib1O-cVkXKRps1tbd60icc57oqhdtDvPO6rmmDb-WX8GbwGYsozsqJr-A9R9-zDU2fNLDzEF1hfR25AoTBWhDlVri-rXB2gVh_XBCzRnTU7WFd0TeUtj-tSf7gYBZy6mZ7yCuQegh2UgEhuJRA4BXBVwW4TjhhdxmmH0l_sgCRMonwOXQ-J0cbCKzCAvsPLIbs2C-eShzOhit5EGxCVxoHf88V84vFmIdLw6B5B1mYVOK3EkkuFr7_4BtvjELKxUai8QKKMeRC4cQIFnm1kLAPfHG8k9wBlK0f8kKuI97ElCLqJIqmA_8BovKtiUoUz1JgRlYy0gQ2Uxo3mvuxy5tgCypX_wgdCEvEGJFd6fmxnVlKuYgEdRfzQhauaBzTPVm3xvw=w1541-h923-no?authuser=0',
-'https://lh3.googleusercontent.com/Mv1HHzYsDiVuOlKexhfAD436BgErGViTi6TE2RY6LwD9WUsHUzNqgT4FfzMX5bLlL3Ou13P6UZEj7mxprKOHPVw5eyunUtAVMh-LdXf0W4J_Ueyy_Xo6KBAcNyalai8GMXKitpS0wfXeprEI2Mi-xsDzefd8dvLBBEPIr6X8mLwT9hFZVG05uJCIZ2_EdgW_pAvv9ZM0gyqrtUty9DkREulUulC_K8CZp5KoL0QeuCi8KffKOpBnLsod_GfaUdFWmQWoFShDJIOm9pp8c5rWC9S8XXjAU-_pB6HhVrBaiR4hV5EgxWWGFq0ShHtid10rzOXsXX76sehVCl-HIsbUF6V3IV4c-XOpiLQHe9-YUSuFeXZod4aXQ6j9eouE0aymNwxTsaE-eVCO9k4FkGkqD_BVSHka6dotthWeCBKy1zQboavdIEwTF28s9cju_JQQcr6WkEvuUsgcZXfJNX8AxKm8sNEvlYwA98BfV47xEeWYWFR-3bZMldBrsnteqGoPxMzLqCK4BfSJWU3CnRgkBCOrO2GCqHXukcTwOZY6bEei-f7GOKH_jSU_h-8Z5XlTfSOcQATBoUJ2oFRd6_hUsB4suL7lpHEFDV2ieJsWkiwpi5z_U5sGDStNkMZnf9JBYugm4llr0Aaitk3j0eU2Xi3a1GEwbwklwkWEXP_G-B39lxlpi_lngtyKoFv4S7chvd88MAAtC1-eI5wBuFCV3A=w1545-h920-no?authuser=0',
-'https://lh3.googleusercontent.com/oBOcJhKgnR7avSfUmAdnvlL1oCAdb1qwtIDERPu7dKXEifWXXTVum9OStKhmhDUmtAMAOAoOup0hMS24mOPke06j9IFahBzGe229dI9OL8kdXcV8kX_zZjbxrkXL-8fShG51jQTQKaeE_qT5OXNw7ADs5dR_JZ5bqsM_hOEBVdvz5Zx2XRbeARLBEpfJLM6rNUNgVl-xU5apAu06pVughCK0ZlSAxgBJ3y7NLZ8tOf5O6YsY5JFDrlMvKRDrKjug5l-Xx0pjE4VWfvquHUJi1G9VTA3utGMt-b8CYDppSdvuvilE1xPGH8Qk2wGpIVP5Gd-FVZ3trg6hnJNA4czNCprys-sjYrlrV5c4Czo6cJJriGTWBP583dlOgFjWI_oaXqIPwJhGfjZbFH_NP4w4Mk7AFojfXdGqIMQ1ZFnFqhCSSz2bjVrap73pZ-3jrisaI0tt3H9h9Wk7HRCUTpXzi2h-5ApfJVgfO2QuQxizlPCH4V9hhrSocHchBZnjkCPylX3b4agbGIpnYCnS5B1kmPIsY-BonmkK2QS5PfQZVu5kRxRUF4gpQ_0thKJK5nZ-LuCvrcuEykP935m6RtKVoutwn4-utgi1ZLpbH9t4TwQzmOvnwhaeBPdmCaC_cIFfGOzYmgQ-0qW-hAiL5vvTpIaqYttg5YlBLmTE-aLnQqvpo9W-BdwpjJ1LaMMM2vxEyQGfr3oSwj4SdUFCJSV3oA=w1545-h922-no?authuser=0',
-'https://lh3.googleusercontent.com/eWKgyCSJ8Jogx4OKji_dIdREJT4PUnfq0PFw971KyTsWAv_OMSQ9M6Peprp42hZrZGRIoohHDHKQ10Sz0H2utdWeL2dnqz3VPRPtiOgJGhP-X1DyD3A3K-PyD2bUBM6E5cg2MkSphWlr4570Fh6-2_5a0osxthYFZDY0GUD_da9o1gIkJIuRoGzupW9SkP5ZWoP79ryR2quQZxB5koNhWZrSYGBeRUCsyVL3K7LVy79fvBMQh5qBbh8QakmCyppFS9hCksYwUKqJJjCbtxC_NQUTtmGiYvDnupVj_eJtfQ8K3N1k8ZFk2xZQ2nin5SmHus_p8v-JOD7RloUN4HVByW3wB2grtNuIflX8HORP5ZpvWtjUmo9l7Zqo8hLEJI-GMWkWLkM-UZv4qxMztqj3-_ZRGDt7Ku4MZiuXiryVnmbAa9j2uq6hlWZMN20uUKWghlz4G6kIlZ3V5iygrwDxYxRk-TqETaEb_OBI59YLgi8Zvg7H-NqRf_MtxZH3vszD2k3WCZq1mACkiNR2VUsb7d_UkF91fx3hCruqrhqeI8UghDpYQVxQ9RIjKgM8yavaNKRiDU1sAfV6sRkutPMdnvMTrgGnd0Iec51qgE77zlW9k0AT6RA-njuE33OFNbXPeLVGGQ19H2x2etu4MJG6lI0-SKjbfh5DyHYtqL9pKkjH9xvHD-Nei2IEevGZoLy3574GhBGConEG-4nj9wglNw=w1414-h922-no?authuser=0',
-'https://lh3.googleusercontent.com/snykeXu7d9raR8WL-llWl1AIHAIEbw16S9EbC8XMFf6fQOwkxYdisGYaen-CX33GeCZXculPaVx2ElXWjbelnsygclxDiRFXnZiFahpVE7nokzjaOJ767j-aDlhRRvZUm4LfQhAY8sGTBfDtybozzZMSr4JRDNZs15ct8rRc0TTLqrkaFJTwroeRZAh-dw81pRlY7nliQCBnvFSshHu3G4RWiZu26g7XuzarW2AIlwM-vVMS0TGFZCtwP1LTaKAwPVw4vNSfmeHA5f7Pgry_7iizDIygeL4u_CNMaXlhYuY_1Ve1BrJvpCCwWAbqggAZ-4MFXKYl4Mhyy7AMC78oChfujjOhhkLHZbao-V7itlDILjonQaS4gj6S8OKeq1SI-jyvo42uODtDl9I11EMB8YLbX2pLMwIIB9xQ8cZIhaD7nG4Y4HVmVhr65NxxwHg7IcFZLFVRWUz3hXi_UYc7vIPlb2YoYTx-5kjuhCYa-0aVMH_eRRyrFN4bj6MlzGLnV5OagcfYsZlsTnQb9vDWY9jdxg-mphqQUO1R5qRcrpeCcwUSnpqXrNzuuBe6TessTDHJa_l_oBgJyQK5d59bbHnmGkGqUd_G9GmAJrmQx9uvf4XRC9vD81Zll_Xk_FVCBm1NPi7bfMhA7-pnM_5DZcAjsJKTlgLmUcIq6eGrP9XE1wbff_pYwPP81NejI-375DohniMb1TQj9mhKMVFOGQ=w1413-h922-no?authuser=0',
-'https://lh3.googleusercontent.com/U5S34EgGFdrnH0jpfSHyHQBmI3YBhVqCoURaTL_M1HVORF62u7GHLu5L69ks6ndzo05voODK9C7l3iOpzInhbg5cLUK3npVbAcT-X25z5t6nyZH8VbFkbJB-r1HGF9sSJ71p_5GS3Tyy9NbupAy-N1C4tQ4_uOoMK-t3RqbFVtih0uZlnL73incOtzEzEy64NVeLUZB188YAKtEHNQeZFxWGNT7x0R_1fuQJagh54Ih8t1D8C6WYL9YiF8U6p_NoRl3VxiSA-wjuOPkwROiSIQicTvLZzuq6YHEq1v0WYKLVJvmvrlPCp0hbWQCDrjBerd1h7TYJGQWshJ_k-YuzureMrPz57o_70OaUU_s5ztUBvaLY0HS6FuK8JOFQb_HM_Xpco0sYw65hRLzXczQWLqqPyL-MWwC6J9IhYGblgruPVAeEM1xxIIT9FQp-e6HGrVo7HbYov1S9aP_XR0gCDL1yJ7VmYgr-yklAPep2FGQ2vFMGy9sq6_73oCBYj0ubECQTzC2U279KBbkpvziAolwGK-CqReHvyuRLlMyFYLp45hywmqUETeY7UK-Cl8D4to54j4gau881ZdOuu-Ck9VW8nwwzIAqi2lVz6jX9oAhJrneTxlwo7Cja83tyZdGVzmLTFRubo_XFKB68xJntFvvFKTJyvdGu6Aua84lQApClhMPHrZoMALT1NMHHbjZp_Id2cr2WRLoc-3rPtYn1NQ=w1412-h925-no?authuser=0',
-'https://lh3.googleusercontent.com/rGVviEIwPq259c6pB7Ppld66NEOT2S_Zx8gwGwuhF1LAL4D9eYI6JqIK4b183ISYVlBKzWMx4hsXxHCbwe7-_CkeEu-n1uYtyDmVThj_hdRqY5E9lEwJdfoMzkPSsflrgdvDB1g9i91-o73h1l6QMQtUa9Ec1IfkKZAjYtzaLVv-neuQsGgmj5sfo9FbmNYW5HcZuqD-uMRtTwC4e244aRn8nVr3MFFWx_1oVYRSSTNFtDAhRk4wrp_B0qq_TD4XQOJmXedpBVkdL5wsyfo5Iawjalke11sYRzovVSrypluTEUwq-UPDTy5lJah5SfpOqUnD5DuSiOk4cBH50hWvtsEjFM11JzalQz4-H46w009ItrL69AzaW0O1K2-JNNJVtCwrg4eqDKp-MeUJoawXtAn53_fO7HOGXU-ZGzk1rEqILQ9Uk4F7YwGP65HKZRpD8cUqTDlIfD7UcqJnMvnMfxu5pvYVVHA3oUz2p_SOy56olC7nvqih1iNlBG7j-bb3-DOXC6UQlA3rIhJpm27Qc4I4-6UE2mN6lJTeXCml_JIDc6g-csDaMCM-qPLze1uz0A2ntaWjsfRQniyO69LSWabYeCysDNjFCkdcWyjV3rGyYSzdkTdaV-8OBNTFQzS561KvCpCiu5TKOlV_ZMurF-9AM1nhUS1YlnaFTEL9XM2SuckBS-QD5yAVAAqaJH9L5yDOKLFfG6JhLoDpECiNAQ=w1412-h922-no?authuser=0',
-'https://lh3.googleusercontent.com/hBLu7tRvNcxcCw3wijeL1oZweXeMVT2AOrTc2eb8kgYYEXbrSRjLBKgJ3L5hY0ePw_MNGj0MyIiZMUIaedVHBXoVvKFW3BgvooLSpQd8URL4Ol1VvqlehNLDGrneZ4MJUzWfyeDjy9wGiMMNifeGiOGUfBp_luVvKN739QPWUb1l92DNbKP_vjQBoNEdnCAWGoFDFMXfX85su-w6jCGfP6myhGGRdg322TUwyOPkGeMEoMzj0h2E5bPZsPLSJhB85e3jX7XuucsJ5n7KqYObs9CNcOhrzxUqMeX-jEKrx7vOna23wffXpr-VcJric82_H55KjTFbKYhxjFMZL6qGhLkrDI-8wNU8IA6a7_Kh3oPFHapOIMIprqjSEUOo68RdJ8G7Cg0o25uBnWWGQX95O6zm4PMUQtO_rVm6ciqQtz8rg94pP-m2OZ6pjXkjx9L5hXa46pzHaxM4PB0N_Po-huelF7Hj-fK-23PbHWHWi41U7uzxrEkCjXeqS-N8vaRdptq_iK5CUYkFM7mTwTp66Bn_-psvo4D8aKtLCy-fLL6G0Cu6_OUGT6y7ycNplzh2LkiS-RYE8D6uvFGnu0XSJ2PKRzSrlY_0-R7qniE84Fd-WIrrC3t-782Jj-1YBd77OmJl58Bl6O_NO1K0GjgRJqxNfrt9deLWBnmZ-NTdG81YRuZYTZA6TK97qQohLAbczTbxxFbk-pcvTKGMs1Gx1Q=w1547-h920-no?authuser=0',
-'https://lh3.googleusercontent.com/WAHb8jSZq_5tikjEXbhYSSd5HVnj4ExWYDE8aehdueAtAR8NR98AAOCwzfM0wd4tf-zguncBhrP56eHxJfPrHu1prHiSJcPMUfVlqssBZgJTCSWwSPB7NCKfW1lNPDK7584RNilA69bvnuLzNhcxDXJTtC6P3rbCtfGjFej7df-ygJ_jJ1N1lLYAZOYy9rBn1aYGuVFCTx5QU6OFZPcXpG__xzWCdTACfc2tj5sy_cADb-vL0uMZ9-xdvtAjp_NFzUO6Y0_uaAc81NaPrV7JeCYjyuuVIP1N-E-2iPJr3auYkbtyjOxDbXTq-o_hjkNJUHbqoYOIducnxlPSFNl4lwPepD3o8nIC61I5W7sFqRziKIMI88OYpm52Jhl4NhbMkN9LGHcYE2XV1b0Jx-TvrK-9ZbytiznAl1oAx5lIWaK_FJIagBf4EGdopw4ddTXj3fytOM6yeJLr9iQoc14dz4PVEzQCl4-LeFklAgX_fxpKNA1hDVzkux0pZOwTrXr_KznffsEthcbTLkPXRKfnCGrKri_Gj_5t-hEO4sQ6Pecg8H5rIEfWN5MOpO-X6yWA77w0ZP-eSE5UNy5xohH4v5GUBFDi7K4s_i4RZI5wJ-mOUbruPlBLTNywhY-RNRRQ9b1fRvjvUNuqpQSsCe0O7kIc6mq562b90hoydoUvonXm5E0DpNW09SMhnTeETgqd-dIDtp_2hi5hJBkRgENTyw=w475-h313-no?authuser=0',
-'https://lh3.googleusercontent.com/GJHnvxDw1lTP37WZSu-bTPmQxG8Wk6770p0cUOZa3SApryT3vNzMXlJ2ooGyhROmUrzrerWIJotcfAnwbrGzesqkCo_BVcCoGnslr4yxahtDpQJkWGhewf-8NC4ThcWRZVDDfXCZhu4oV5d1QBhoBYORFjPozSlEg3KUis0XykkqHFTUV5WFq6PT7pO3rZurYSj-pH-XhZUzRnMd4zl1FXi-ueU08ymBKmABmVM73oLZSHIdeckqKOJtksbeVOvb51rIFyL4C-VN1EnKevb133RaezfcX0WF4-1SwiZJwmHYVd3Lnbil7KcLS9jfxSSXpt80HnNNk1WRCA4fcaliAynjQDcpG9OnnAjPKg1YTiBSoy4Q-CFuWsxXTOeVX5TlRFFs1kGtoJSJ_8EIVbiCiIYlndrfD4dqhE7UNjTlxTgMBbigfDZ_E0IuQhszfu3Cw9Kp2Zs-Sc0NgTWRRESmlpap1iszkECYTHmQSHT_GtvcqeI9AtueyOh_u5sycgi3hISxC88bXdAndN_0bJLyz-X3dXH68Tj4So_zLsFi2tHBxsGc-jU8lDgfsnBXFfDvbYgcTOlA_BAucZlXUZyTPDSBj6TrxcbXzQjdUUzc8mjVWC-834jai_4AVn78TRm9QKrWJBSAL-T5uziSUCUz0yl9G8dBTmIpGb-VWY7sMCYUaExkI_WkHoAvCgiQF56PRWQQqjLYPL-yoAA5whzJ5Q=w1412-h920-no?authuser=0',
-'https://lh3.googleusercontent.com/gXm8cF6t001eaoveNwxYL_xVMhZWdeZiR9DVdvv-dUc7Apv8RYNm7buNib0LbqkH-dSnX6w0w83VWvkGcScwgumvl0OG5hyM3Lz1JjcK-Pp8qz7zuKMXbw-lRvC0C1zazlWqbhlkKP6aggcAPw9CkH0AcvRynANS0EBAhq1iNMomD1IkdMRrGPs0Jgcr2nV-QKAfUzzcprwQ8_-naHkxwmRPMx4WhCLnzGWWnAveIQHAmihMUrQsLG_kqSPYMGNzc1zl5sVxBZX7-uynEESQbER9YDdL4F20x_A-1F1E32eyYVIJCHMhc-yRe1vrE165n9hTgBOLYWdUK-pZFlV5xe8x75nUpDLQkW7-somJlB-yBjqE_9D9zVwYIijPL8RgQ3X3FMDqixDxokus8x582WP0sPgBUrSBdAZcjalnfGEaGFDB2L0s1paH7pyPFxSeyO6FiUGTNON1GCC3nsFkuuXCpvuzP0v56_TOgRyDQxcGh52t90ESmumhyaVJBnUquk6z9EXHtIJNIiuC8KKo1U3ObtWwyYqR0LFzZ4pPbU0FK3qrAl3GhyDX9Ug1FhZdwubcU0Cm7lDliopoLAOqQUwzwkqZnlNx_BJn33wQ901PQJ_je_6VooSdRhTY7W_S6bz3STE5yV83L2VmSxmoSRvclORJefOsJJmw-dSIW7S14U2k9z_7TzBcxtZH2sPBbJb63kStpAPjgFHbYgknQw=w1414-h922-no?authuser=0',
-'https://lh3.googleusercontent.com/yfg_5JooznGb6T1PGH_UPmcElzJ9fQf8LvFn6k1jON_H5tnOlcW0kZL1nRiXpqwY_a-czjccnpd5Tpa4gX6n30i25PXwyBFx4FKYiOSLIG8WrpbfdK_VogMrXuClccoVUNixzRUhUM0eQOW8yJWHRjker3szIOt71XfkgxZiFp3dA4SvGG6BB_apVgd59gi-kPYjVivlwEyesPEosRtUDRMx_SQXEtk95LB7-hqatdj73iF52ncwyskd5bJCxXZfAKtghnINdelkni5eGhtsl38OvSi7OdkMPK7wcgnZ1qwOggrfK9kYqxN04uLa2P1CqMiwTKOHJAsKO72Z3b1LB-SWJ_KBcj6E9Nc0bMGQMRCCUHz4uDVI4GBpmCa0xB8s4MQgx5Pr7E2JOxLjfpzeiNWt7-O8L4ZvirBocMm46_JM6nexTdxwFIvVGFF_37xaRl5wJnmUMwtSta6RTP0b09GXvmdfiyLswPyzbR0PVAWoJKhRWwfl8M_BdK7BPvRy110C03q1JKJOi804cOfWJFNGaoafgEraOs49V-uRVP3Hll3MntRtWY7VtvVYX3RAkTGStMFP2JqiU9v0fhivmlintBxw1E-jBbwA78_Al3uJzOpG2OgBb1o3CRKEjK18Up9WChuk7CeTNYv0LXF1jOFFydk3ikIvenI7qaXZ_eD1lin8Dt-VPu0s3Uy_O0bnQfd_X4bjEPLqMRmiSnTcQw=w1416-h925-no?authuser=0',
-'https://lh3.googleusercontent.com/UY1xDN4ijFYDNoQsFC95b3CDZMXoV0FARDnVDGtWfQgXKSiBRFpGLDpDSKa9ms4ODlkMpFTBmjFudHrrTtjZMMsR9HUdNmF627sb0kO4K7-IYJVDDqZV3cWJeMPu-JI6KCQS_rCx-_gSWfjQEsiYVx0XGRPSnLf18DaU6hq2LwsysAv95Zj8c6p-FzTMqMqYieBTQRN98YThqzocYR0PeuOWv_WE0ZyG5BgXfd9xoRGLa8yZ2KGbpar2vKIhVTqVIJnHCy1wXIs6Z3FH6bpmLHFL8OEJtg-pZw57k4iIebUlt86SFJMtAvWndFoqNMPOLEGpHLrxwFfuXqzcicK8L5bBDXkub287smv-mq-dwjRgNwIgPe283W5ri0Xcm85ySgDmkIET1QDZKNkIN5OtbknXraRuwFnj4Vf_K1eBGcU6z2vPrUOuhmRg4VVWdL8dAYdX_HOCvpGU2cB-Hqb_JJD04fqgeUyH5KWI52ifbWPrPgS5SJSfGFA3Vb7d8JXewJv_fDwnvjAlEsqrYdhgxF1LHZ-JsDQ5t-ptthW6qba5j5BqSexp_51s3G4oEeQRt1qmyPThIcRxL3R-XcWvWjeT721j2JU-B8THX3pCH7J_6Hs7u-sKfV-0jCopgQ6-DiQBCB6aKLfc518oi1v9pPGbtdd_d3u4DG2CqAjgEtTvUg9li_ULUBIQ7cli-Ium0tLZfKbLcgBjnQmVGkV_EQ=w1409-h925-no?authuser=0',
-'https://lh3.googleusercontent.com/1A06YQdd4FCB2Yt58FCmQJBGeDEESBAf8FhCjjxGeaWCh7rIgJ7QJVR4zNyIEHV18q9489AonPKKXqvNtPj1iI6dxBSfdhzHf1teR3aodISUWYYSP-wRbJs3rhfHE46Adel1f4oEiVhg51QFnFc6lKN_qN_U9iL0WCiDcFg0MqjGMFiJIIFmvfpadfBwoE14n8WpqRxF3sUVUqdZL-hmGAkzwUVdRaWbJ54eHc5u5Vu5Rhu4Er44qgnJaizKU01TZ5U5rmVgXXHEB913Sgn5DfeOGfsba0C1TvEHQWdSX0Mdh7bAdOfuHfpnN2BG7qbWwduoOkmXY1BSYsn3Y2agFlCaQZ7aWMFLCG3ypBJOLKqnj9drT_2pAeNaxsUhBHIHd6HFxJu_ZZ7N1XWw_Nk9SCTzt-dDFhtj89dRx8eiYoMcjF-S7XYUFmhWOVNgJHPMn9HRXFMac5P8MGe8q6Ok7xT9gJ-M1OxWqUZYSYxcKQXgFJ-ySzFuFubcoZQFTVxjNADSQd0hZt7RsziZ8MTyyuLQ0BHFWKhNLVbypKPcScZlb_r7JGEKPu4ZN3rNgBxluQsYizk5xRGyHLT5s4G3CweivNXknu23TcS6S3KodBDpIfqWh3unPrbiTuRjfvkVGNN65gnR_7HiJr8yQC6ByWP_4g6BFu7XEM_roOzoBYy4XJcNiIB6Bq2fZQ5_By-GWS_YQp8sd3HjAYg1HBjYaQ=w1415-h924-no?authuser=0',
-'https://lh3.googleusercontent.com/XgX2RWk49ORnkJcEOwl36mhBwA2-MWTJ828XNLGcZYg8ADy1lGtgvgV7rc0ZzxRlEhB6lrTVE_I65Xm3zO5AGxwExzO8VvRBmuy9ptGqhB5iuMgJzQMu3b0j-Wipm9rQlYuyB6Ndyj_qIgLTU6gIzJqDFjf8rmLaHOnUauWUiuD0_vJn01icZYRdM3wDgRbh4WBHeCA03cHZ9oJpqC-S5eDx7QNWlXlaNNhYq3G6wlY9-ZALATUN4Vq-4BxMnuJSg67C4S0fIEdj5PW6MGlkjP-hFm1LXpjEWNNohAs7ZhEqIuk1XohxHrjwFSs8fiPU4hbC-a1mLx16e261B8ZEoxeOO2ykuPVOFOoWjb6HRrRqbuS5u5z6_WApboEzDC0ts8jnR8JDEDO7eAQyo-XNpUxGBTeWDgFkq3yhQtRI5uLcHRFFcsMbz4AQ-x6vinC73YbdOtpSfRyTLCJvtiAXdtNcP_kYkxwczVx_GPPSlsPd5__1iFhnML9Rn_rgOyU6NS8b9yQNnad-FAghhyTDItyT5ZknYIfSFh84PIotes3cP-tzPDA5eI7TTyY2v1sXTaY5cVSmog4e-iBKFygd6txs3pMT2R-39-yYRP4zCAo5cW00d8VU-GlSpJi3oXCKHdLx1S9Di4VGyjqr8uwhWG3_dc5V-LMjoGKGH2QNmgLOeUqy9txgD4muKvC5Q8GcPPT0W3UX_zYz60MnbCyFgg=w1411-h925-no?authuser=0',
-'https://lh3.googleusercontent.com/vsmcb6XnJlSyXhQLX1qIEZoeiz5eJNCacKcW4_QBkeE4A74P-yMCgJr_nnxV6YwFN1HkqV5WVOfQa5WVCB2Maef_pvSY8UGK8VwuvpR_7FE1ew0mFg-QyEkIWTQAzbOtMzbaNwI9isl8A1EbtJHcj5mC3WGRaqovM1vzoXXSLp7bpBi0yzyOvUxYGPw5gW9z_57g5NGuX1zeoeJGZHrBo9FM8XH-TOxuD5bYOOCZLmlqb-uSAxIChdUWE0bEOI4xun1LVbd57blf_43EugyyEjpFet94dPPXTNM_egP9Lbqf30rPS8dxu6GWeHdlOxvF_i85iQjIWzAApV9LsFGdKmtL7tEx3XCL9lP2NQ9dXHfsD88nnkRhyudI_2r48nosKI1GnuuCiXw6s6I1K-PcfS_bXoamP6EUCMMEcxmvULUuPqWUWANf_p71gbHwp1aLyQD0fQgBMjdCgS-jQzblxBSsWjj6dxEzL6l1XXmmAyrAVOcc7iUYx8VYs1geaZDtZI3DScgE9QNZPaSDRbE7D4-hiZ3kQ5aBzD_m97KozBoyrCWeCq9rUn1fv9Uk8oy3se-WIE8ZQYEYj6y2hsiEBcNcxPVBVTwWJVQZIje6p-z_WEFWteRzv7benqtGQmLm9GuYBAWm7i76xXyIdboYsUT7fXh6uuwWdBLreD1wmVKqLtwujjgagAEXGLTxOcdFCUpqkiQjE_3N2wkk32azMg=w1413-h920-no?authuser=0',
-'https://lh3.googleusercontent.com/rzArK-oyxRlOOSyn19kWXnA1aWN4ytgGHxqNIYmm7ZfyxzxoFWEx_VkpuL5LBfLovbas0Pa6ozmOc8fN-lWTvqfjd-nNF6wWrU_aawkeR4lwRMXAqye0hbJGT8rZgQKk2SY9wVjMoJ_dinSiL6_po8ZGb_qkbrSWSbWKmETAPnb5yZGCuLLkjyFE5mgnVxIg1xjMnhEy-IyuOW8QK8MRLbrtbw-slZgB2GXDHnZ0Pf0B7vBy_EGRJSqiHyQHG-o9__l0jee1Idv8galjKmGfWjMU7fJnuIt5zr-OmSJEAfejEUWm2SKYnhfn57XsiuzhuchOseDkNFUcQFq102sbXdiGxixqBmjmsQQe8kek7ynl9SNPzle2eqkvL2dpcAP5F151e2BT0X0OWx3MJTgoPw_rTpNE8-f5PYccCJysU4D2rTXXNfk2vH_bPx0JRgnF_Os1rtJO4MPCV3pR0wwyn1XQCLfU2xryFGUZRm-yLYet0jX6aSJPncqRAc78PeiA0DKec1PFmLNOfXGhHiEiULLqv8HJjLLlGu2YsF-g8wFP6Cc6SNvFnICeretrGcfAb8sMpQHk-gMY0rOwlukd1GLW_nBy1GS3_nIy-P_XtUih_V8Smci4sfj5tw3WX9QlWQfhjj0EY3DvUIEGDCGTStOYvL_dDb0XtLPe-RqgoxzdGBcCgf13gQFzdKMsEl86NAeTZ7NTLYHozxuEl-zvDg=w1535-h916-no?authuser=0'
-]
- 
-export default class Exterior extends Component{
- 
-    constructor(props){
-        super(props);
- 
-        this.state={
-            photoIndex:0,
-            isOpen:false,
-        };
-    }
- 
-    render(){
-        const{photoIndex,isOpen}=this.state;
- 
-        return(
-            <div className={styles.galerija}>
-                <Fade triggerOnce={true} delay={500}>
-                    <div className={styles.galerijaGrid}>
-                        {images.map((image, index) => <img src={image} onClick={() => {
-                            this.setState({isOpen: true, photoIndex: index})}
-                            }/>)}
-                    </div> 
-                </Fade>
-            {isOpen && ( 
-                <Lightbox className={styles.lightbox}
-                    mainSrc={images[photoIndex]} 
-                    nextSrc={images[photoIndex + 1]} 
-                    prevSrc={images[photoIndex -1]} 
-                    onCloseRequest={() => this.setState({ isOpen: false })} 
-                    onMovePrevRequest={() => 
-                        this.setState({ 
-                            photoIndex: (photoIndex + images.length - 1) % images.length, 
-                        }) 
-                    } 
-                    
-                    onMoveNextRequest={() => 
-                        this.setState({ 
-                            photoIndex: (photoIndex + 1) % images.length, 
-                        }) 
-                    } 
-                /> 
-                )} 
-            </div>
-        )
-    }
-}
+const Exterior = ({setSelectedImage}) => {
+  const [imageUrl, setImageUrl] = useState([]);
+
+  const getImages = () => {
+    const imageRef = db.ref("Data").child("exterior");
+    imageRef.on("value", (snapshot) => {
+      const imageUrls = snapshot.val();
+      const urls = [];
+      for (let id in imageUrls) {
+        urls.push({ id, url: imageUrls[id] });
+      }
+      const newState = [...imageUrl, ...urls];
+      setImageUrl(newState);
+    });
+  };
+
+  useEffect(() => {
+    getImages();
+  }, []);
+
+  return (
+    <div className={styles.galerija}>
+      <section className={styles.galerijaGrid}>
+        {imageUrl.map(({ id, url }) => (
+          <div key={id} onClick={() => setSelectedImage(url)} >
+            <img src={url} alt="uploaded-pic" />
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+};
+export default Exterior;

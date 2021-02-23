@@ -14,8 +14,12 @@
  
 .galerijaGrid img {
     flex: 0 0 32%;
-    width: 285px;
+    width: 380px;
     margin: 5px;
     min-height: 70px;
-    cursor: pointer;
 }
+
+.galerijaGrid img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
