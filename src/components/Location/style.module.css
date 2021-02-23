@@ -140,20 +140,13 @@ a:link{
 @media screen and (min-width: 620px) and (max-width:980px){
     
     .locationTitle{
-        font-size:40px;
+        font-size:50px;
     }
 }
 
-@media screen and (min-width: 480px) and (max-width: 620px) {
+@media screen and (max-width: 620px){
     .locationTitle{   
-    font-size:40px;
-    }
-}
-
-
-@media screen and (max-width: 480px){
-    .locationTitle{   
-        font-size:38px; 
+        font-size:40px; 
         margin-top: 16px;     
     }
 }

@@ -14,3 +14,43 @@
     padding-bottom: 25px;
     font-style: underline;
 }
+
+@media screen and (min-width: 620px) and (max-width:980px){
+    
+    .exteriorTitle{
+        font-size:50px;
+    }
+
+    .exteriorSubtitle{
+        width:60%;
+        margin: 0 auto;
+        font-size:20px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 620px) {
+    .exteriorTitle{   
+    font-size:45px;
+    }
+
+    .exteriorSubtitle{
+        font-size: 18px;
+        width:80%;
+        margin: 0 auto;
+    }
+}
+
+
+@media screen and (max-width: 480px){
+    .exteriorTitle{   
+        font-size:40px; 
+        margin-top: 16px;     
+    }
+
+    .exteriorSubtitle{
+        font-size: 15px;
+        width:80%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+}
