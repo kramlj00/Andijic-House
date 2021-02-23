@@ -16,31 +16,37 @@
     font-size: 23px;
     font-weight: normal;
     position: relative;
-    padding-left: 160px;
+    padding-left: 150px;
     padding-right: 150px;
-    text-align: left;
+    text-align: justify;
     font-family: 'Quicksand', sans-serif;
     line-height: 2.5rem;
     text-indent: 50px;
     color: black;
 }
 
-@media screen and (min-width:750px) and (max-width:1025px)
+@media screen and (min-width:1000px) and (max-width:1200px)
 {
     .aboutUsText {
-        font-size: 20px;
-        padding-left: 50px;
-        padding-right: 50px;
         text-indent: 50px;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+@media screen and  (min-width:750px) and (max-width:1000px){
+    .aboutUsText {
+        padding-left: 70px;
+        padding-right: 70px;
     }
 }
 
 @media screen and  (min-width:600px) and (max-width:750px)
 {
     .aboutUsText {
-        font-size: 20px;
-        padding-left: 25px;
-        padding-right: 25px;
+        font-size: 22px;
+        padding-left: 35px;
+        padding-right: 35px;
         text-indent: 50px;
     }
 }
