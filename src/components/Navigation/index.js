@@ -1,14 +1,22 @@
 import React from 'react'
-import ComboBox from '../ComboBox'
  
 import NavigationBar from '../NavigationBar'
 import styles from './style.module.css'
+
+import { useMediaQuery } from 'react-responsive'
+import MobileNavBar from '../MobileNavBar'
  
-const Navigation = ({ activeTab }) => (
-    <section className={styles.navigation}>
-        <NavigationBar activeTab={activeTab} />
-         <ComboBox/>
-    </section>
-)
+const Navigation = ({ activeTab }) => {
+    const isMobile = useMediaQuery({query: '(max-device-width: 800px)'})
+
+    return (
+        <section className={styles.navigation}>
+            {isMobile
+                ? <MobileNavBar activeTab={activeTab}/>
+                : <NavigationBar activeTab={activeTab} />
+            }
+        </section>
+    )
+}
  
 export default Navigation
