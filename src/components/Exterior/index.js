@@ -29,7 +29,7 @@ const Exterior = ({setSelectedImage}) => {
       <section className={styles.galerijaGrid}>
         {imageUrl.map(({ id, url }) => (
           <div key={id} onClick={() => setSelectedImage(url)} >
-            <img src={url} alt="uploaded-pic" />
+            <img src={url} alt="uploaded-pic" height="240px"/>
           </div>
         ))}
       </section>

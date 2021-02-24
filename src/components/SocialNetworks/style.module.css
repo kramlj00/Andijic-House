@@ -4,13 +4,6 @@
 
 .emailLogo {
     margin-left: 5px;
-    height: 50px;
-    height: 50px;
-}
-
-.faceLogo {
-    height: 50px;
-    height: 50px;
 }
 
 .socialNetw .emailLogo:hover{
@@ -27,11 +20,9 @@
 {
     .emailLogo {
         height: 40px;
-        height: 40px;
     }
     
     .faceLogo {
-        height: 40px;
         height: 40px;
     }
 }
@@ -40,11 +31,9 @@
 {
     .emailLogo {
         height: 30px;
-        height: 30px;
     }
     
     .faceLogo {
-        height: 30px;
         height: 30px;
     }
 }
