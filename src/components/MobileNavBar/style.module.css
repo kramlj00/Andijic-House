@@ -48,7 +48,7 @@
     width: 100vw;
     text-align: center;
     text-transform: uppercase;
-    height: 30vh;
+    /*height: 30vh;*/
     color: black;
     transition: all 1s ease-in-out;
     list-style: none;
