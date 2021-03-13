@@ -1,0 +1,62 @@
+.calendarTitle {
+    font-family: "Great Vibes";
+    font-size: 55px;
+    margin-top: 10px;
+    position: relative;
+    font-weight: normal;
+    margin-bottom: 0px;
+    color: black;
+}
+
+.calendar{
+    height: 600px;
+    width: 800px;
+}
+
+@media screen and (min-width: 620px) and (max-width:980px){
+    .calendarTitle{
+        font-size:50px;
+    }
+}
+
+@media screen and (max-width: 620px){
+    .calendarTitle{   
+        font-size:40px; 
+        margin-top: 16px;     
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width:1000px){
+    .calendar{
+        height: 500px;
+        width: 700px;
+    }
+}
+
+@media screen and  (min-width:650px) and (max-width:750px){
+    .calendar{
+        height: 400px;
+        width: 600px;
+    }
+}
+
+@media screen and  (min-width:520px) and  (max-width:650px){
+    .calendar{
+        height: 300px;
+        width: 500px;
+    }
+}
+
+@media screen and  (min-width:410px) and  (max-width:520px){
+    .calendar{
+        height: 300px;
+        width: 400px;
+    }
+}
+
+@media screen and  (max-width:410px){
+    .calendar{
+        height: 300px;
+        width: 300px;
+    }
+}
