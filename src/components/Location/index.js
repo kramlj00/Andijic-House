@@ -15,7 +15,7 @@ const Location = () => (
         </div>
         <div className={styles.location}>
         <Slide triggerOnce={true} delay={200}>
-        <a href="https://www.google.com/maps/dir//Andriji%C4%87+House/data=!4m8!4m7!1m0!1m5!1m1!1s0x134a720c5f6330cf:0x810796f65a20ec98!2m2!1d16.715859899999998!2d42.920234199999996">
+        <a href="https://www.google.com/maps/dir//Andriji%C4%87+House/data=!4m8!4m7!1m0!1m5!1m1!1s0x134a720c5f6330cf:0x810796f65a20ec98!2m2!1d16.715859899999998!2d42.920234199999996" target = "_blank" rel = "noopener noreferrer">
             <button className={styles.getDirectionsBtn}>GET DIRECTIONS</button>
         </a>
         </Slide>

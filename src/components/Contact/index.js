@@ -73,10 +73,10 @@ export class Contact extends Component {
                         <p>tonci.andrijic@gmail.com</p>
 
                         <section className={styles.socialNetw} >
-                            <a href="https://www.facebook.com/ApartmanAndrijic/">
+                            <a href="https://www.facebook.com/ApartmanAndrijic/" target = "_blank" rel = "noopener noreferrer">
                                 <img src={i1} alt="faceLogo" className={styles.faceLogo}></img>
                             </a>
-                            <a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+                            <a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target = "_blank" rel = "noopener noreferrer">
                                 <img src={i2} alt="emailLogo" className={styles.emailLogo}></img>
                             </a>
                         </section>
