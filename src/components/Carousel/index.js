@@ -30,7 +30,7 @@ const responsive = {
 
 function Slider(props){
     return(
-        <Carousel
+        <Carousel className={styles.react_carousel}
             swipeable={true}
             draggable={false}
             showDots={true}
@@ -61,6 +61,7 @@ function Slider(props){
             <div>
                 <img src={i4} alt="img4" className={styles.slideImg}/>  
             </div>
+            
         </Carousel>
     );
 }
