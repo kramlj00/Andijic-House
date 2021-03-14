@@ -2,10 +2,11 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React from 'react'
 
-import i1 from '../../images/carousel_img1.jpg'
-import i2 from '../../images/carousel_img2.jpg'
-import i3 from '../../images/carousel_img3.jpg'
-import i4 from '../../images/carousel_img4.jpg'
+import i1 from '../../images/carousel1.jpg'
+import i2 from '../../images/carousel2.jpg'
+import i3 from '../../images/carousel3.jpg'
+import i4 from '../../images/carousel4.jpg'
+import i5 from '../../images/carousel5.jpg'
 
 import styles from './style.module.css'
 
@@ -60,6 +61,9 @@ function Slider(props){
             </div>
             <div>
                 <img src={i4} alt="img4" className={styles.slideImg}/>  
+            </div>
+            <div>
+                <img src={i5} alt="img5" className={styles.slideImg}/>  
             </div>
             
         </Carousel>
