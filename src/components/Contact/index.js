@@ -10,6 +10,8 @@ import i2 from '../../images/emailLogo1.png'
 import * as emailjs from "emailjs-com"
 import { Component } from 'react';
 
+import { Bounce } from "react-awesome-reveal";
+
 export class Contact extends Component {
    constructor(props){
        super(props);
@@ -50,6 +52,10 @@ export class Contact extends Component {
    render(){
        return(
             <Fade triggerOnce={true} delay={300}>
+                <Bounce triggerOnce={true}>
+                    <h2 className={styles.contactTitle}>Contact</h2>
+                    <h3 className={styles.contactSubtitle}>Sve informacije o nama možete dobiti putem maila, broja telefona i naših društvenih mreža.</h3>
+                </Bounce>
                 <main className={styles.contactForm}>
                     <section className={styles.contactInfo}>
                         <h2>CONTACT</h2>

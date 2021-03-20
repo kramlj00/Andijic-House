@@ -10,11 +10,11 @@ function RoomsPage() {
 
   return(
     <main>
-      <NavigationHeader activeTab="Rooms"/>
+      <NavigationHeader activeTab="Interior"/>
       <RoomsTitle/>
       <Rooms setSelectedImage={setSelectedImage}/>
       {selectedImage && <Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>}
-      <Footer activeTab = "Rooms"/>
+      <Footer activeTab = "Interior"/>
     </main>
   )
 }

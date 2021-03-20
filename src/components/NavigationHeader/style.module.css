@@ -2,7 +2,9 @@
     height: 100px;
     display: flex;
     justify-content: space-between;
-    background-color: #B5D1E5;
+    /*background-color: #B5D1E5;*/
+    background-color: white;
+    border-bottom: 1px solid gray;
   }
 
 

@@ -11,7 +11,7 @@
     padding: 15px 10px;
     list-style: none;
     width: fit-content;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
     text-transform: uppercase;
     color: #555
@@ -22,7 +22,7 @@
   }
   
   .navigationBar .active, .navigationBar .active:hover{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid red;
   }
 
   .footer {

@@ -9,7 +9,6 @@ const RoomsTitle = () => (
     <nav>
         <Bounce triggerOnce={true}>
             <h2 className={styles.exteriorTitle}>Exterior</h2>
-            <h3 className={styles.exteriorSubtitle}>Here you can see the exterior of the house.</h3>
         </Bounce>
     </nav>
 )

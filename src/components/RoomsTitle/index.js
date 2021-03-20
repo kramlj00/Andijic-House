@@ -8,8 +8,7 @@ import { Bounce } from "react-awesome-reveal";
 const RoomsTitle = () => (
     <nav>
         <Bounce triggerOnce={true}>
-            <h2 className={styles.roomsTitle}>Rooms</h2>
-            <h3 className={styles.roomsSubtitle}>Here you can see the interior of the house.</h3>
+            <h2 className={styles.roomsTitle}>Interior</h2>
         </Bounce>
     </nav>
 )

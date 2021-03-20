@@ -2,12 +2,12 @@
 
 .contactImg {
     width:  100%;
-    height: 80vh;
+    height: 75vh;
     object-fit: cover;
 }
 
 .contactTitle {
-    font-family: "Great Vibes";
+    font-family: 'Dancing Script', cursive;
     font-size: 55px;
     font-weight: normal;
     position: relative;
