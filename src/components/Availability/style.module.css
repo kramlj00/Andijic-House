@@ -1,0 +1,33 @@
+.calImg {
+    width:  100%;
+    height: 75vh;
+    object-fit: cover;
+}
+
+@media screen and (min-width:715px) and (max-width:980px)
+{
+    .calImg {
+        height: 64vh;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:715px)
+{
+    .calImg {
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width:370px) and (max-width:600px)
+{
+    .calImg {
+        height: 30vh;
+    }
+}
+
+@media screen and (max-width:370px)
+{
+    .calImg {
+        height: 25vh;
+    }
+}

@@ -1,5 +1,5 @@
 .calendarTitle {
-    font-family: "Great Vibes";
+    font-family: 'Dancing Script', cursive;
     font-size: 55px;
     margin-top: 10px;
     position: relative;
@@ -11,6 +11,8 @@
 .calendar{
     height: 500px;
     width: 800px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 @media screen and (min-width: 620px) and (max-width:980px){

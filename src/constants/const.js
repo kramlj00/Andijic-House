@@ -1,7 +1,8 @@
 export const navs = [
     {tab: 'Home', to: '/'},
-    {tab: 'Rooms', to: '/rooms'}, 
+    {tab: 'Interior', to: '/rooms'}, 
     {tab: 'Exterior', to: '/exterior'}, 
+    {tab: 'Availability', to: '/availability'},
     {tab: 'Contact', to: '/contact'}
 ]
 
